@@ -11,7 +11,7 @@ class BotController{
 
     const browser = await puppeteer.launch({
         headless: true,
-        args: ["--disable-setuid-sandbox"],
+        args: ["--no-sandbox","--disable-setuid-sandbox"],
         'ignoreHTTPSErrors': true
     });
     const userAgent = 'Mozilla/5.0 (X11; Linux x86_64)' +
