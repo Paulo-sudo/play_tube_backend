@@ -10,7 +10,7 @@ class BotController{
         
 
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         args: ["--no-sandbox","--disable-setuid-sandbox"],
         'ignoreHTTPSErrors': true
     });
@@ -39,15 +39,15 @@ class BotController{
         });
         url =  url.replace("watch?v=","embed/")+"?autoplay=1";
         console.log("URL:", url);
-        await browser.close();
+        //await browser.close();
             
         return res.json({ url: url, title:title, img:img})
     } catch (error) {
 
-        await delay(1000)
+        await delay(1200)
 
             img = await page.evaluate(() => {
-                return (document.querySelector(".rISBZc").src)
+                return (document.querySelector("#vidthumb2").src)
             });
             
             url = await page.evaluate(() => {
@@ -55,12 +55,12 @@ class BotController{
                return (document.querySelector(".rGhul").href)
             });
             title = await page.evaluate(() => {
-                return (document.querySelector(".rISBZc").alt)
+                return (document.querySelector("#vidthumb2").alt)
             });
             url =  url.replace("watch?v=","embed/")+"?autoplay=1";
     
             console.log("URL:", url);
-            await browser.close();
+           // await browser.close();
             return res.json({ url: url, title:title, img:img})
 
 
